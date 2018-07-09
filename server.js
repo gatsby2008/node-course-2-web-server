@@ -45,6 +45,12 @@ app.get('/bad', (req, res) => {
     error:'unable to fullfil your request'
   })
 })
+app.get('/projects', (req, res) => {
+  //res.send('about page')
+  res.render('projects.hbs', {
+    pageTitle: 'Projects Page'
+  })
+})
 
 app.listen(port, () => {
   console.log(`Server is up on port ${port}`)
