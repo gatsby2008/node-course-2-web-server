@@ -2,8 +2,9 @@ const path = require('path')
 const express = require('express')
 const hbs = require('hbs')
 const fs = require('fs')
+const cool = require('cool-ascii-faces')
 
-const port = process.env.PORT || 3000
+const PORT = process.env.PORT || 3000
 
 var app = express()
 hbs.registerPartials(path.join(__dirname, 'views/partials'))
@@ -51,7 +52,8 @@ app.get('/projects', (req, res) => {
     pageTitle: 'Projects Page'
   })
 })
+app.get('/cool', (req, res) => res.send(cool()))
 
-app.listen(port, () => {
-  console.log(`Server is up on port ${port}`)
+app.listen(PORT, () => {
+  console.log(`Server is up on port ${PORT}`)
 })
