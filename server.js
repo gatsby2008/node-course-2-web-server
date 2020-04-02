@@ -4,9 +4,11 @@ const hbs = require('hbs')
 const fs = require('fs')
 const cool = require('cool-ascii-faces')
 
+
 const PORT = process.env.PORT || 3000
 
 var app = express()
+app.use(express.bodyParser());
 hbs.registerPartials(path.join(__dirname, 'views/partials'))
 app.set('view engine', 'hbs')
 
@@ -48,6 +50,10 @@ app.get('/cool', (req, res) => {
   res.render('cool.hbs', {
     pageTitle: 'Projects Page'
   })
+})
+app.post('/twilio', (req, res) => {
+  console.dir(req.body);
+  res.send("test");
 })
 
 app.listen(PORT, () => {
