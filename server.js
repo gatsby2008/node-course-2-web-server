@@ -3,12 +3,12 @@ const express = require('express')
 const hbs = require('hbs')
 const fs = require('fs')
 const cool = require('cool-ascii-faces')
-
+const bodyParser = require('body-parser');
 
 const PORT = process.env.PORT || 3000
 
 var app = express()
-app.use(express.bodyParser());
+app.use(bodyParser.urlencoded({ extended: true }))
 hbs.registerPartials(path.join(__dirname, 'views/partials'))
 app.set('view engine', 'hbs')
 
@@ -51,10 +51,10 @@ app.get('/cool', (req, res) => {
     pageTitle: 'Projects Page'
   })
 })
-app.post('/twilio', (req, res) => {
-  console.dir(req.body);
-  res.send("test");
-})
+app.post('/post-test', (req, res) => {
+    console.log('Got body:', req.body);
+    res.sendStatus(200);
+});
 
 app.listen(PORT, () => {
   console.log(`Server is up on port ${PORT}`)
